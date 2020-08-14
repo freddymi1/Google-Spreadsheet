@@ -94,5 +94,3 @@ class Scrapper
  
 end
 
-sc = Scrapper.new("Ville", "email")
-puts sc.generate_spreadsheet
