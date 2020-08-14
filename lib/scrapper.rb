@@ -1,3 +1,10 @@
+require 'rubygems'
+require 'open-uri'
+require 'nokogiri'
+require 'json'
+require 'google_drive'
+require 'csv'
+
 class Scrapper
     
     attr_accessor :ville, :email
@@ -69,8 +76,8 @@ class Scrapper
 
         array_spreadsheet = get_townhall_urls
 
-        session = GoogleDrive::Session.from_config("exorb.json")
-        ws = session.spreadsheet_by_key("ebb70fe137f2b33e96871d500003c74e8b99fa09").worksheets[0]
+        session = GoogleDrive::Session.from_config("config.json")
+        ws = session.spreadsheet_by_key("af6d716a29a1c3ebb53bae2419082e2e364f3969").worksheets[0]
         i = 1
         # Parcourir les valeur dans le tableau
         for x in array_spreadsheet do
@@ -87,3 +94,5 @@ class Scrapper
  
 end
 
+sc = Scrapper.new("Ville", "email")
+puts sc.generate_spreadsheet
